@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1083</width>
+    <height>691</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>1051</width>
+      <height>441</height>
+     </rect>
+    </property>
+    <column>
+     <property name="text">
+      <string>Placa</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Marca</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Modelo</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Ano</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Renavam</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Chassi</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Posição pneu</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>DOT</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Sulcagem</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Idade do pneu</string>
+     </property>
+    </column>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1083</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFrota">
+    <property name="title">
+     <string>Frota</string>
+    </property>
+    <addaction name="actionAdicionar_ve_culo"/>
+    <addaction name="actionEditar_ve_culo"/>
+    <addaction name="actionApagar_ve_culo"/>
+   </widget>
+   <widget class="QMenu" name="menuPneus">
+    <property name="title">
+     <string>Pneus</string>
+    </property>
+    <addaction name="actionAdicionar_pneus"/>
+    <addaction name="actionEditar_pneus"/>
+    <addaction name="actionRemover_pneus"/>
+   </widget>
+   <widget class="QMenu" name="menuRelat_rios">
+    <property name="title">
+     <string>Relatórios</string>
+    </property>
+    <addaction name="actionEstado_dos_pneus"/>
+    <addaction name="actionEstado_da_frota"/>
+   </widget>
+   <addaction name="menuFrota"/>
+   <addaction name="menuPneus"/>
+   <addaction name="menuRelat_rios"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionAdicionar_ve_culo">
+   <property name="text">
+    <string>Adicionar veículo</string>
+   </property>
+  </action>
+  <action name="actionEditar_ve_culo">
+   <property name="text">
+    <string>Editar veículo</string>
+   </property>
+  </action>
+  <action name="actionApagar_ve_culo">
+   <property name="text">
+    <string>Apagar veículo</string>
+   </property>
+  </action>
+  <action name="actionAdicionar_pneus">
+   <property name="text">
+    <string>Adicionar pneus</string>
+   </property>
+  </action>
+  <action name="actionEditar_pneus">
+   <property name="text">
+    <string>Editar pneus</string>
+   </property>
+  </action>
+  <action name="actionRemover_pneus">
+   <property name="text">
+    <string>Remover pneus</string>
+   </property>
+  </action>
+  <action name="actionEstado_dos_pneus">
+   <property name="text">
+    <string>Estado dos pneus</string>
+   </property>
+  </action>
+  <action name="actionEstado_da_frota">
+   <property name="text">
+    <string>Estado da frota</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
