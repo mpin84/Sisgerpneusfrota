@@ -160,6 +160,9 @@ class Ui_Cadpneu(object):
         # Configurar banco de dados
         self.setupDatabase()
 
+        # Carregar placas
+        self.loadPlates()
+
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
@@ -208,23 +211,35 @@ class Ui_Cadpneu(object):
             QtWidgets.QMessageBox.critical(None, 'Erro', f'Erro ao conectar com o banco de dados: {e}')
             exit()
 
+    def loadPlates(self):
+        try:
+            self.cursor.execute("SELECT Placa FROM Carro")
+            placas = self.cursor.fetchall()
+            for placa in placas:
+                self.comboBox.addItem(placa[0])
+        except conector.Error as e:
+            QtWidgets.QMessageBox.critical(None, 'Erro', f'Erro ao carregar placas: {e}')
+
     def addPneu(self):
-        # Método para adicionar um carro no banco de dados
+        # Coletar dados do formulário
+        placa = self.comboBox.currentText()
         pos_pneu = self.comboBoxTyrePos.currentText()
         DOT = self.lineTyreDOT.text()
         sulcagem = self.doubleSpinBoxTyreGroove.value()
         marca_pneu = self.comboBox_TyreBrand.currentText()
 
-        if pos_pneu and DOT and sulcagem and marca_pneu:
-            comando = "INSERT INTO Pneus (pos_pneu, DOT, sulcagem, marca_pneu) VALUES (?, ?, ?, ?)"
+        if placa and pos_pneu and DOT and sulcagem and marca_pneu:
+            comando = "INSERT INTO Pneus (placa, pos_pneu, DOT, sulcagem, marca_pneu) VALUES (?, ?, ?, ?, ?)"
             try:
-                self.cursor.execute(comando, (pos_pneu, DOT, sulcagem, marca_pneu))
+                self.cursor.execute(comando, (placa, pos_pneu, DOT, sulcagem, marca_pneu))
                 self.conn.commit()
                 QtWidgets.QMessageBox.information(None, 'Sucesso', 'Pneu cadastrado com sucesso!')
-            except conector.IntegrityError:
-                QtWidgets.QMessageBox.warning(None, 'Erro', 'Erro ao cadastrar o pneu. Verifique se este já está cadastrado.')
+            except conector.IntegrityError as e:
+                QtWidgets.QMessageBox.warning(None, 'Erro', f'Erro ao cadastrar o pneu: {e}')
             except conector.Error as e:
                 QtWidgets.QMessageBox.critical(None, 'Erro', f'Erro no banco de dados: {e}')
+            except Exception as e:
+                QtWidgets.QMessageBox.critical(None, 'Erro', f'Ocorreu um erro inesperado: {e}')
         else:
             QtWidgets.QMessageBox.warning(None, 'Erro', 'Todos os campos são obrigatórios!')
 
